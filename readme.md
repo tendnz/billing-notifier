@@ -81,3 +81,21 @@ const findAccountName = (accountId: string) => {
   }
 };
 ```
+
+## Change the cron as needed
+
+We are UTC+12 or 13, hence the weirdness
+
+```yml
+functions:
+  billing-notifier:
+    handler: .build/billing-notifier/main.handler
+    events:
+      # 7am every monday = 7pm sunday UTC
+      - schedule: cron(0 19 ? * SUN *)
+      # 3pm every friday = 3am friday UTC
+      - schedule: cron(0 3 ? * FRI *)
+      # 7am on the 5th day of the month = 7pm on the 4th day of the month
+      - schedule: cron(0 19 4 * ? *)
+
+```
