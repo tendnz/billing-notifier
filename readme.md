@@ -19,6 +19,8 @@ Inspired by [Pushpay](https://github.com/pushpay), rewritten for [Tend Health](h
 
 ## Make an IAM role with the following, and add the ARN into `serverless.yml`
 
+You can do this in the serverless.yml, but I like to keep it outside of serverless.
+
 ```yml
 provider:
   name: aws
@@ -27,18 +29,21 @@ provider:
     role: 'arn-of-your-role-here'
 ```
 
-```hcl
-  statement {
-    effect = "Allow"
-    actions = [
-      "ce:GetCostAndUsage",
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Action": "ce:GetCostAndUsage",
+            "Resource": "arn:aws:ce:us-east-1:__billing account id here__:*"
+        }
     ]
-
-    resources = [
-      "arn:aws:ce:us-east-1:__BILLING_ACCOUNT_ID_HERE__:*",
-    ]
-  }
+}
 ```
+
+It'll also need the usual log group access etc.
 
 ## Set up a slack token and account
 
