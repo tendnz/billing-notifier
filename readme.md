@@ -15,6 +15,9 @@ billing
 
 Inspired by [Pushpay](https://github.com/pushpay), rewritten for [Tend Health](https://github.com/tendnz)
 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">How to do cost optimisation <br>- look at your costs, often. Monthly meetings work <br>- give all developers access to see granular costs<br>- set up a alerts</p>&mdash; Peter Goodman (@petegoo) <a href="https://twitter.com/petegoo/status/1542216495232876544?ref_src=twsrc%5Etfw">June 29, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
 # Still needs doing
 
 ## Make an IAM role with the following, and add the ARN into `serverless.yml`
