@@ -1,0 +1,39 @@
+service: billing-notifier
+configValidationMode: error
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-west-2
+  iam:
+    role: 'arn-of-your-role-here'
+  stage: ${opt:stage, 'billing'}
+  timeout: 60
+  versionFunctions: false
+
+  deploymentBucket:
+    name: your-serverless-state-bucket-here
+    serverSideEncryption: AES256
+
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+    AWS_EMF_ENVIRONMENT: Lambda
+    SLACK_TOKEN: 'SLACK_TOKEN_HERE'
+    SLACK_CHANNEL: '#slack-channel-here'
+   
+
+functions:
+  billing-notifier:
+    handler: .build/billing-notifier/main.handler
+    events:
+      # 7am every monday = 7pm sunday UTC
+      - schedule: cron(0 19 ? * SUN *)
+      # 3pm every friday = 3am friday UTC
+      - schedule: cron(0 3 ? * FRI *)
+      # 7am on the 5th day of the month = 7pm on the 4th day of the month
+      - schedule: cron(0 19 4 * ? *)
+
+
+plugins:
+  - serverless-plugin-monorepo
+  - serverless-offline

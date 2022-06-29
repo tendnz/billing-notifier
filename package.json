@@ -1,0 +1,42 @@
+{
+  "name": "billing-notifier",
+  "version": "1.0.0",
+  "private": "true",
+  "scripts": {
+    "deploy": "yarn build && sls deploy --stage billing",
+    "deploy-env": "yarn build && sls deploy --stage",
+    "test": "jest --passWithNoTests",
+    "build": "tsc -b",
+    "watch": "tsc -b -w --preserveWatchOutput",
+    "package": "yarn build && sls package --stage billing",
+    "package-env": "yarn build && sls package --stage",
+    "lint": "eslint . --ext .ts"
+  },
+  "dependencies": {
+    "moment-timezone": "^0.5.31",
+    "uuid": "^3.4.0",
+    "@slack/web-api": "^5.13.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8",
+    "@types/aws-sdk": "^2.0",
+    "@types/jest": "^26.0.0",
+    "@typescript-eslint/eslint-plugin": "^2",
+    "@typescript-eslint/parser": "^2",
+    "@types/uuid": "^3.4.7",
+    "@types/lodash": "^4",
+    "eslint": "^6",
+    "eslint-config-prettier": "^6",
+    "eslint-plugin-import": "^2",
+    "eslint-plugin-prettier": "^3",
+    "eslint-plugin-simple-import-sort": "^5",
+    "prettier": "^2",
+    "serverless-offline": "^8",
+    "serverless-plugin-monorepo": "^0.11",
+    "typescript": "^4",
+    "@types/node": "^16",
+    "jest": "^26.0",
+    "ts-jest": "^26",
+    "ts-node": "^8"
+  }
+}
