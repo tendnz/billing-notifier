@@ -13,7 +13,7 @@
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
-    "moment-timezone": "^0.5.31",
+    "moment-timezone": "^0.5.35",
     "uuid": "^3.4.0",
     "@slack/web-api": "^5.13.0"
   },
